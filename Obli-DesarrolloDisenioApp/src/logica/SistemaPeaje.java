@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * @author Usuario
  */
 public class SistemaPeaje {
-     private ArrayList<Puesto> puestos = new ArrayList();
-     private ArrayList<Bonificacion> bonificaciones = new ArrayList();
-     private ArrayList<Categoria> listaCategorias = new ArrayList();
+    private ArrayList<Puesto> puestos = new ArrayList();
+    private ArrayList<Bonificacion> bonificaciones = new ArrayList();
+    private ArrayList<Categoria> listaCategorias = new ArrayList();
 
        
     public void crearCategoria(String nombre) {

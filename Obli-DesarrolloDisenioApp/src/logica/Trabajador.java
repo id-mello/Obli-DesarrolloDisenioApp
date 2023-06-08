@@ -11,11 +11,16 @@ package logica;
  */
 public class Trabajador extends Bonificacion{
 
-    public Trabajador() {
-    }
-
+    
+    
+    
     public Trabajador(String nombre, String descripcion, double descuento) {
         super(nombre, descripcion, descuento);
+    }
+
+    @Override
+    public double calculoDEscuento() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

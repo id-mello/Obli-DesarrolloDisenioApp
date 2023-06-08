@@ -57,10 +57,7 @@ public class Propietario extends Usuario{
         Vehiculo v = new Vehiculo(mat, modelo, color,cat);
         
         
-        //////// VERIFICAR DONDE VALIDAR SI EL VEHÍCULO YA SE ENCUENTRA ASOCIADO A OTRO USER  //////////////
-        if(listaVehiculos.contains(v)) throw new Exception("El vehículo ya se encuentra asociado a otro propietario.");
-        
-        
+             
         listaVehiculos.add(v);
     
     }
@@ -71,5 +68,11 @@ public class Propietario extends Usuario{
         AsignarBonificacion asignacion = new AsignarBonificacion(bonificacion,puesto);
     }
     
+    public void agregarRecarga(double montoRecarga){
+        
+        Recarga recarga = new Recarga();
+        
+        listaRecargas.add(recarga);
     
+    }
 }

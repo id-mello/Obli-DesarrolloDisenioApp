@@ -18,5 +18,10 @@ public class Exonerado extends Bonificacion{
         super(nombre, descripcion, descuento);
     }
 
+    @Override
+    public double calculoDEscuento() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }

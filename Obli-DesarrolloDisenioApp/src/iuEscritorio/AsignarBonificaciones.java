@@ -4,16 +4,21 @@
  */
 package iuEscritorio;
 
-import controladores.AsignarBonificacionIVista;
+import controladores.ControladorAsignarBonificación;
+import java.util.ArrayList;
+import logica.Bonificacion;
+import logica.Puesto;
+import controladores.IVistaAsignarBonificacion;
+import logica.Propietario;
 
-public class AsignarBonificaciones extends javax.swing.JDialog implements AsignarBonificacionIVista{
+public class AsignarBonificaciones extends javax.swing.JDialog implements IVistaAsignarBonificacion{
 
-    /**
-     * Creates new form AsignarBonificaciones
-     */
+    private ControladorAsignarBonificación controlador;
+    
     public AsignarBonificaciones(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        controlador = new ControladorAsignarBonificación(this);
     }
 
     /**
@@ -30,8 +35,8 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements Asigna
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        comboBonificaciones = new javax.swing.JComboBox<>();
-        comboPuestos = new javax.swing.JComboBox<>();
+        comboBonificaciones = new javax.swing.JComboBox();
+        comboPuestos = new javax.swing.JComboBox();
         txtCedula = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -57,18 +62,26 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements Asigna
 
         jLabel3.setText("Cédula:");
 
-        comboBonificaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBonificaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBonificacionesActionPerformed(evt);
             }
         });
 
-        comboPuestos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboPuestos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPuestosActionPerformed(evt);
+            }
+        });
 
         txtCedula.setText("Escriba aquí...");
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         tablaBonificaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,14 +181,22 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements Asigna
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBonificacionesActionPerformed
 
+    private void comboPuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPuestosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPuestosActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        buscarContacto();
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAsignar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JComboBox<String> comboBonificaciones;
-    private javax.swing.JComboBox<String> comboPuestos;
+    private javax.swing.JComboBox comboBonificaciones;
+    private javax.swing.JComboBox comboPuestos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -187,4 +208,32 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements Asigna
     private javax.swing.JTable tablaBonificaciones;
     private javax.swing.JTextField txtCedula;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mostrarBonificaciones(ArrayList<Bonificacion> bonificaciones) {
+        for (Bonificacion b:bonificaciones){
+            comboBonificaciones.addItem(b.getNombre());
+        }
+    }
+
+    @Override
+    public void mostrarPuestos(ArrayList<Puesto> puestos) {
+        for (Puesto p:puestos){
+            comboPuestos.addItem( p.getNombre());
+        }
+    }
+
+    
+    private void buscarContacto() {
+
+        controlador.buscarPropietarioPorCI(txtCedula.getText());
+    }
+
+    @Override
+    public void mostrarAsignaciones(Propietario contacto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+
 }

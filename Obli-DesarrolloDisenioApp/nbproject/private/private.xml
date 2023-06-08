@@ -4,10 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/sistemapeaje/DatosPruebas.java</file>
-            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/controladores/AsignarBonificaciónControlador.java</file>
+            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/controladores/ControladorAsignarBonificación.java</file>
             <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/logica/Propietario.java</file>
-            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/controladores/AsignarBonificacionIVista.java</file>
-            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/logica/AsignarBonificacion.java</file>
+            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/logica/Exonerado.java</file>
+            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/logica/Frecuente.java</file>
+            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/logica/Trabajador.java</file>
+            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/logica/Bonificacion.java</file>
+            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/controladores/IVistaAsignarBonificacion.java</file>
+            <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/logica/SistemaPeaje.java</file>
             <file>file:/C:/Users/Ignac/Desktop/Obligatorio/SistemaPeaje/src/iuEscritorio/AsignarBonificaciones.java</file>
         </group>
     </open-files>
