@@ -2,6 +2,7 @@
 package controladores;
 
 import java.util.ArrayList;
+import javax.swing.JTable;
 import logica.Bonificacion;
 import logica.Fachada;
 import logica.Propietario;
@@ -13,7 +14,7 @@ public class ControladorAsignarBonificación {
     
     
     private IVistaAsignarBonificacion iVista;
-
+    private Propietario propietario;
 
     public ControladorAsignarBonificación(IVistaAsignarBonificacion iVista) {
         this.iVista = iVista;
@@ -34,9 +35,16 @@ public class ControladorAsignarBonificación {
     
     public void buscarPropietarioPorCI(String cedula){
         
-        Propietario propietario = Fachada.getInstancia().buscarPropietarioPorCI(cedula);
+        propietario = Fachada.getInstancia().buscarPropietarioPorCI(cedula);
         
         iVista.mostrarAsignaciones(propietario);
+        
+    }
+
+    public void agregarBonificacion(String cedula, Bonificacion bonificacion, Puesto puesto) {
+        
+        
+        propietario.agregarBonificacion(bonificacion, puesto);
         
     }
 
@@ -44,3 +52,18 @@ public class ControladorAsignarBonificación {
     
     
 }
+
+//
+// @Override
+//    public void mostrarContactos(ArrayList<Contacto> contactos) {
+//    
+//        ArrayList<String> listado = new ArrayList();
+//        for (Contacto c : contactos) {
+//            listado.add(formatear(c));
+//        }
+//        listaResultado.setListData(listado.toArray());
+//    }
+//
+//    private String formatear(Contacto c) {
+//        return c.getNombre() + " (" + c.getTelefono() + ")";
+//    }

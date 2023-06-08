@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
+
 package iuEscritorio;
 
 import controladores.ControladorAsignarBonificación;
@@ -9,6 +6,11 @@ import java.util.ArrayList;
 import logica.Bonificacion;
 import logica.Puesto;
 import controladores.IVistaAsignarBonificacion;
+import java.awt.Component;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
+import javax.swing.table.DefaultTableModel;
+import logica.AsignarBonificacion;
 import logica.Propietario;
 
 public class AsignarBonificaciones extends javax.swing.JDialog implements IVistaAsignarBonificacion{
@@ -75,6 +77,11 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements IVista
         });
 
         txtCedula.setText("Escriba aquí...");
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,10 +92,7 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements IVista
 
         tablaBonificaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Bonificación", "Puesto"
@@ -107,6 +111,11 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements IVista
         labelPropietario.setText("Propietario:");
 
         btnAsignar.setText("Asignar");
+        btnAsignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsignarActionPerformed(evt);
+            }
+        });
 
         btnCerrar.setText("Cerrar");
 
@@ -189,6 +198,16 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements IVista
         buscarContacto();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        asignarBonificacion();
+    }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
+        controlador.agregarBonificacion(txtCedula.getText(), 
+                                        (Bonificacion) comboBonificaciones.getSelectedItem(), 
+                                        (Puesto) comboPuestos.getSelectedItem());
+    }//GEN-LAST:event_btnAsignarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,14 +231,14 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements IVista
     @Override
     public void mostrarBonificaciones(ArrayList<Bonificacion> bonificaciones) {
         for (Bonificacion b:bonificaciones){
-            comboBonificaciones.addItem(b.getNombre());
+            comboBonificaciones.addItem(b);
         }
     }
 
     @Override
     public void mostrarPuestos(ArrayList<Puesto> puestos) {
         for (Puesto p:puestos){
-            comboPuestos.addItem( p.getNombre());
+            comboPuestos.addItem( p);
         }
     }
 
@@ -230,10 +249,51 @@ public class AsignarBonificaciones extends javax.swing.JDialog implements IVista
     }
 
     @Override
-    public void mostrarAsignaciones(Propietario contacto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void mostrarAsignaciones(Propietario propietario) {
+
+//        ArrayList<String> bonificacionesDePropietario = new ArrayList();
+        labelPropietario.setText("Propietario: " + propietario.getNombre());
+        
+        DefaultTableModel model = (DefaultTableModel) tablaBonificaciones.getModel();
+
+        
+        for (AsignarBonificacion ab : propietario.getListaBonificaciones()) {
+            Object[] rowData = {ab.getBonificacion().getNombre(), ab.getPuesto().getNombre()};
+            model.addRow(rowData);
+        }
+        
+//        
+//        for(AsignarBonificacion ab : propietario.getListaBonificaciones()){
+//            
+//            bonificacionesDePropietario.add(formatear(ab));
+//            
+//        }        
+//        
     }
 
-    
+//    private String formatear(AsignarBonificacion ab) {
+//        
+//        return ab.getBonificacion().getNombre() + 
+//    }
+//
+//    
+
+    public void asignarBonificacion() {
+        
+        
+    }
 
 }
+
+
+//new DefaultListCellRenderer() {
+//    @Override
+//    public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+//        super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+//        if (value instanceof Puesto) {
+//            Puesto puesto = (Puesto) value;
+//            setText(Puesto.getNombre());
+//        }
+//        return this;
+//    }
+//}

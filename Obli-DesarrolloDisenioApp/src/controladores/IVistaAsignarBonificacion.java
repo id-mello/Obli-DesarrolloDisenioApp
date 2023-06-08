@@ -14,4 +14,6 @@ public interface IVistaAsignarBonificacion {
     public void mostrarPuestos(ArrayList<Puesto> puestos);
     
     public void mostrarAsignaciones(Propietario contacto);
+    
+    public void asignarBonificacion();
 }

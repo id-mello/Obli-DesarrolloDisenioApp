@@ -53,19 +53,13 @@ public class Propietario extends Usuario{
     }
     
     public void agregarVehículo(String mat, String modelo, String color, Categoria cat) throws Exception{
-        
-        Vehiculo v = new Vehiculo(mat, modelo, color,cat);
-        
-        
-             
-        listaVehiculos.add(v);
-    
+        listaVehiculos.add(new Vehiculo(mat, modelo, color,cat));
     }
     
     
     public void agregarBonificacion(Bonificacion bonificacion, Puesto puesto){
     
-        AsignarBonificacion asignacion = new AsignarBonificacion(bonificacion,puesto);
+        getListaBonificaciones().add(new AsignarBonificacion(bonificacion,puesto));
     }
     
     public void agregarRecarga(double montoRecarga){
@@ -75,4 +69,6 @@ public class Propietario extends Usuario{
         listaRecargas.add(recarga);
     
     }
+
+  
 }

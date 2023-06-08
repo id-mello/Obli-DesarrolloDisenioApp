@@ -60,7 +60,7 @@ public class SistemaUsuarios {
         int i = 0;
         while(i <= listaPropietarios.size() && propietario == null){
             
-            if(listaPropietarios.get(i).getCedula() == cedula) propietario=listaPropietarios.get(i);
+            if(listaPropietarios.get(i).getCedula().equals(cedula)) propietario=listaPropietarios.get(i);
             i++;
         }
         
