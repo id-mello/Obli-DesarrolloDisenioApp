@@ -6,6 +6,7 @@
 package logica;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -52,14 +53,29 @@ public class Propietario extends Usuario{
         return listaRecargas;
     }
     
-    public void agregarVehículo(String mat, String modelo, String color, Categoria cat) throws Exception{
+    public void agregarVehículo(String mat, String modelo, String color, Categoria cat){
         listaVehiculos.add(new Vehiculo(mat, modelo, color,cat));
     }
     
     
-    public void agregarBonificacion(Bonificacion bonificacion, Puesto puesto){
-    
-        getListaBonificaciones().add(new AsignarBonificacion(bonificacion,puesto));
+    public void agregarBonificacion(Bonificacion bonificacion, Puesto puesto) throws PeajeException{
+        
+     
+        
+        int i = 0;
+        while(i < listaBonificaciones.size()){
+          
+            if(listaBonificaciones.get(i).getPuesto().equals(puesto))throw new PeajeException("“Ya tiene \n" +
+                                                                                " una bonificación asignada para ese puesto");
+            i++;
+        }
+        
+        AsignarBonificacion nuevaBonificacion = new AsignarBonificacion(bonificacion, puesto, LocalDate.now());
+        
+        
+//        nuevaBonificacion.validaciones();
+ 
+        getListaBonificaciones().add(nuevaBonificacion);
     }
     
     public void agregarRecarga(double montoRecarga){

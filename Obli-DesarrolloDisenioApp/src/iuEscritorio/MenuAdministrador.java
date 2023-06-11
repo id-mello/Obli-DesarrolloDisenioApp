@@ -107,7 +107,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRecargaActionPerformed
 
     private void btnBonificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBonificacionActionPerformed
-       new  AsignarBonificaciones(this, false).setVisible(true);
+       new  AsignarBonificacionesDialogo(this, false).setVisible(true);
     }//GEN-LAST:event_btnBonificacionActionPerformed
 
     /**

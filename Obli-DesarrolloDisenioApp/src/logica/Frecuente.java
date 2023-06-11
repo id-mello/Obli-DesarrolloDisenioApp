@@ -5,6 +5,8 @@
  */
 package logica;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Usuario
@@ -19,10 +21,21 @@ public class Frecuente extends Bonificacion{
     }
 
     @Override
-    public double calculoDEscuento() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public double calculoDescuento() {
+        
+        double monto = 0;
+        boolean paso = false;
+        
+//        for(RegistroTransito rt : ){
+//        
+//        }
+        
+        return monto;
     }
 
-    
+//    Tienen un 50% de descuento a partir del segundo transito realizado en el día 
+//por un puesto determinado con el mismo vehículo. En el primer transito del día (con cada 
+//vehículo) no tienen descuento.
+
     
 }

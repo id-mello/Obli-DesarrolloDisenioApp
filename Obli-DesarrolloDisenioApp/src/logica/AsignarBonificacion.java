@@ -1,20 +1,21 @@
 
 package logica;
 
-import java.time.Instant;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 
 public class AsignarBonificacion {
     
     private Bonificacion bonificacion;
     private Puesto puesto;
-    private Instant fecha;
+    private LocalDate fecha;
 
-    public AsignarBonificacion(Bonificacion bonificacion, Puesto puesto) {
+    public AsignarBonificacion(Bonificacion bonificacion, Puesto puesto, LocalDate fecha) {
+        
         this.bonificacion = bonificacion;
         this.puesto = puesto;
-        this.fecha = Instant.now();
+        this.fecha = fecha;
     }
 
     public Bonificacion getBonificacion() {
@@ -33,9 +34,14 @@ public class AsignarBonificacion {
         this.puesto = puesto;
     }
 
-    public Instant getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
+    public void validaciones() throws PeajeException{
     
+        if(puesto instanceof Puesto) throw new PeajeException("“Debe especificar un puesto.");
+        if(bonificacion instanceof Bonificacion) throw new PeajeException("“Debe especificar una bonificación.");
+
+    }
 }

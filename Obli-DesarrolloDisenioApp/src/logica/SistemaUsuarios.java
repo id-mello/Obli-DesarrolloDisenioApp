@@ -53,16 +53,18 @@ public class SistemaUsuarios {
     }
 
     
-    public Propietario buscarPropietarioPorCI(String cedula){
+    public Propietario buscarPropietarioPorCI(String cedula) throws PeajeException{
     
         Propietario propietario = null;
         
         int i = 0;
-        while(i <= listaPropietarios.size() && propietario == null){
+        while(i < listaPropietarios.size() && propietario == null){
             
             if(listaPropietarios.get(i).getCedula().equals(cedula)) propietario=listaPropietarios.get(i);
             i++;
         }
+        
+        if(propietario == null) throw new PeajeException("No existe el propietario.");
         
         return propietario;
     }

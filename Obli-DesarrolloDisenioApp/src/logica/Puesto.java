@@ -15,6 +15,9 @@ public class Puesto {
         this.listaTarifas = new ArrayList();
     }
 
+    public Puesto() {
+    }
+
 
     public String getNombre() {
         return nombre;

@@ -83,7 +83,7 @@ public class Fachada {
         sistemaPeaje.AgregarBonificacionFrecuente(nombre, descripcion, descuento);
     }
     
-    public Propietario buscarPropietarioPorCI(String cedula){
+    public Propietario buscarPropietarioPorCI(String cedula) throws PeajeException{
         return sistemaUsuarios.buscarPropietarioPorCI(cedula);
     }
      

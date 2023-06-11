@@ -49,6 +49,6 @@ public abstract class Bonificacion {
         this.descuento = descuento;
     }
 
-    public abstract double calculoDEscuento();
+    public abstract double calculoDescuento();
    
 }

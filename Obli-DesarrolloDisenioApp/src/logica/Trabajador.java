@@ -19,7 +19,7 @@ public class Trabajador extends Bonificacion{
     }
 
     @Override
-    public double calculoDEscuento() {
+    public double calculoDescuento() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
