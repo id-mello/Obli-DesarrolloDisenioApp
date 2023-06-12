@@ -1,25 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logica;
 
 import java.util.ArrayList;
+import observador.Observable;
+ 
 
-/**
- *
- * @author Usuario
- */
-public class SistemaUsuarios {
+
+
+public class SistemaUsuarios extends Observable{
     
     private ArrayList<Administrador> usuarioAdministrador = new ArrayList();
     private ArrayList<Propietario> listaPropietarios = new ArrayList();
+    private ArrayList<Recarga> listaRecargaPendiente = new ArrayList();
+    public enum eventos{cambioListaRecargasPendientes,cambioSaldoPropietario};
     
-   /* public void agregarUsarioAdministrador(String nombre,String pass,String nombreCompleto){
-        administradores.add(new UsuarioAdministrador(nombre, pass, nombreCompleto));
-        
-    }*/
+ 
     public void agregarAdministrador(String nombre, String cedula, String contraseña){
        usuarioAdministrador.add(new Administrador(nombre, cedula, contraseña));
     }
@@ -69,6 +64,38 @@ public class SistemaUsuarios {
         return propietario;
     }
     
-    
+    public ArrayList<Recarga> getListaRecargaPendiente() {
+        return listaRecargaPendiente;
+    }
 
+    public void setListaRecargaPendiente(ArrayList<Recarga> listaRecargaPendiente) {
+        this.listaRecargaPendiente = listaRecargaPendiente;
+    }
+    
+    public void quitarRecargaPendiente(Recarga r){
+        listaRecargaPendiente.remove(r);
+        avisar(eventos.cambioListaRecargasPendientes);
+    }
+
+    public ArrayList<Propietario> getListaPropietarios(){
+        return listaPropietarios;
+    }
+    
+    public Propietario existeVehiculoMatricula(String matricula) throws PeajeException{
+        
+        boolean encontrado = false;
+        Propietario p = null;
+        int i = 0;
+        
+        while(i<listaPropietarios.size() && !encontrado){
+            
+            p = listaPropietarios.get(i);
+            encontrado = p.existeVehiculoMatricula(matricula);
+            i++;
+        }
+ 
+        if(!encontrado)throw new PeajeException("No existe el vehículo.");
+            
+        return p;
+    }
 }

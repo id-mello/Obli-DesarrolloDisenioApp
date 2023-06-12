@@ -1,17 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logica;
 
 import java.util.ArrayList;
+import observador.Observable;
 
 /**
  *
  * @author Usuario
  */
-public class Fachada {
+public class Fachada extends Observable{
     
     private SistemaUsuarios sistemaUsuarios = new SistemaUsuarios();
     private SistemaPeaje sistemaPeaje = new SistemaPeaje();
@@ -42,10 +39,7 @@ public class Fachada {
     
      public void agregarTarifaPuesto(Puesto puesto, double monto, Categoria cat){
         sistemaPeaje.agregarTarifaPuesto(puesto, monto, cat);
-    }
-    
-    ///////////////////////////////////////////////////// NUEVO  /////////////////////////////////////////////////////
-    
+    }    
      
     public Administrador loginAdministrador(String ci, String pass) {
          return sistemaUsuarios.loginAdministrador(ci, pass);
@@ -54,10 +48,12 @@ public class Fachada {
     public Propietario loginPropietario(String cedula, String password){
         return sistemaUsuarios.loginPropietario(cedula, password);
     }
-     
+//     
 //    public ArrayList<Propietario> getListaPropietarios(){
-//        return controlAcceso.getListaPropietarios();
+//        return sistemaUsuarios.getListaPropietarios();
 //    }
+//    
+    
     
     public ArrayList<Categoria> getCategorias(){
         return sistemaPeaje.getListaCategorias();
@@ -87,5 +83,40 @@ public class Fachada {
         return sistemaUsuarios.buscarPropietarioPorCI(cedula);
     }
      
+    public ArrayList<Recarga> ListadeRecargasPendientes(){
+    
+        return sistemaUsuarios.getListaRecargaPendiente();
+    }
+    
+    public void AgregarRecargaPendiente(Recarga r){
+    
+         sistemaUsuarios.getListaRecargaPendiente().add(r);
+    }
+    
+    public Propietario traerPropietario(String usuario){
+        
+        ArrayList<Propietario> listaPropietarios = sistemaUsuarios.getListaPropietarios();
+
+        for (Propietario propietario : listaPropietarios) {
+            if (propietario.getNombre().equals(usuario)) {
+                return propietario;
+            }
+        }
+        return null;
+    }
      
+    public void quitarRecargaPendiente(Recarga r){
+        sistemaUsuarios.quitarRecargaPendiente(r);
+    }
+    
+    public void agregarSaldo(String usu,double monto ){
+        Propietario propietarioRecarga = traerPropietario(usu);
+        propietarioRecarga.agregarSaldo(monto);
+        avisar(SistemaUsuarios.eventos.cambioSaldoPropietario);
+    }
+    
+    public Propietario existeVehiculoMatricula(String matricula) throws PeajeException{
+        return sistemaUsuarios.existeVehiculoMatricula(matricula);
+    }
+    
 }

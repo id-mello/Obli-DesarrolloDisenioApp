@@ -9,10 +9,10 @@ public class Vehiculo{
     private Categoria categoria;
 
     Vehiculo(String mat, String modelo, String color, Categoria cat) {
-        this.matricula = matricula;
+        this.matricula = mat;
         this.modelo = modelo;
         this.color = color;
-        this.categoria = categoria;
+        this.categoria = cat;
     }
 
     public String getMatricula() {

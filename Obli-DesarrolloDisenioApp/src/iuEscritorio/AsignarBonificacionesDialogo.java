@@ -75,7 +75,6 @@ public class AsignarBonificacionesDialogo extends javax.swing.JDialog implements
             }
         });
 
-        txtCedula.setText("Escriba aquí...");
         txtCedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaActionPerformed(evt);
@@ -199,7 +198,8 @@ public class AsignarBonificacionesDialogo extends javax.swing.JDialog implements
     }//GEN-LAST:event_comboPuestosActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        buscarContacto();
+//        buscarContacto();
+        controlador.buscarPropietarioPorCI(txtCedula.getText());
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
@@ -207,8 +207,8 @@ public class AsignarBonificacionesDialogo extends javax.swing.JDialog implements
     }//GEN-LAST:event_txtCedulaActionPerformed
 
     private void btnAsignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsignarActionPerformed
-        int b = comboPuestos.getSelectedIndex();
-        int p = comboBonificaciones.getSelectedIndex();
+        int p = comboPuestos.getSelectedIndex();
+        int b = comboBonificaciones.getSelectedIndex();
         if(b != 0 && p != 0){
              controlador.agregarBonificacion(txtCedula.getText(), 
                                         (Bonificacion) comboBonificaciones.getSelectedItem(), 
@@ -265,9 +265,9 @@ public class AsignarBonificacionesDialogo extends javax.swing.JDialog implements
     }
 
     
-    private void buscarContacto() {
-        controlador.buscarPropietarioPorCI(txtCedula.getText());
-    }
+//    private void buscarContacto() {
+//        controlador.buscarPropietarioPorCI(txtCedula.getText());
+//    }
 
     @Override
     public void mostrarAsignaciones(Propietario propietario) {

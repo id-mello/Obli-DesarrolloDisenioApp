@@ -8,7 +8,6 @@ package logica;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Propietario extends Usuario{
     private double saldo;
@@ -59,31 +58,54 @@ public class Propietario extends Usuario{
     
     
     public void agregarBonificacion(Bonificacion bonificacion, Puesto puesto) throws PeajeException{
-        
-     
-        
+
         int i = 0;
         while(i < listaBonificaciones.size()){
           
-            if(listaBonificaciones.get(i).getPuesto().equals(puesto))throw new PeajeException("“Ya tiene \n" +
-                                                                                " una bonificación asignada para ese puesto");
+            if(listaBonificaciones.get(i).getPuesto().equals(puesto))throw new PeajeException("“Ya tiene una bonificación asignada para ese puesto");
             i++;
         }
         
         AsignarBonificacion nuevaBonificacion = new AsignarBonificacion(bonificacion, puesto, LocalDate.now());
-        
-        
-//        nuevaBonificacion.validaciones();
- 
+
         getListaBonificaciones().add(nuevaBonificacion);
     }
     
-    public void agregarRecarga(double montoRecarga){
-        
-        Recarga recarga = new Recarga();
-        
-        listaRecargas.add(recarga);
     
+    
+    public void agregarSaldo(double monto){
+        this.saldo += monto;
+    }
+    
+    
+    
+    public Recarga cargarRecarga(double monto) throws PeajeException{
+          if(monto < 1 ) throw new PeajeException("Monto Invalido");
+        Recarga r = new Recarga(monto, "pendiente",this.getNombre());
+        listaRecargas.add(r);
+        return r;
+    }
+    
+    
+    
+    public boolean existeVehiculoMatricula(String matricula){
+    
+        boolean encontrado = false;
+        int i = 0;
+
+        while(i<getListaVehiculos().size() && !encontrado){
+
+            if(getListaVehiculos().get(i).getMatricula().equals(matricula)) encontrado = true;
+            i++;
+        }
+
+        return encontrado;
+    }
+            
+            
+    public void agregarUnTransito(Puesto puesto){
+    
+        
     }
 
   

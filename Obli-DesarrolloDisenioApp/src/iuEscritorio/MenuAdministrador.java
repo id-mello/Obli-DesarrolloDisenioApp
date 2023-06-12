@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package iuEscritorio;
 
-/**
- *
- * @author Usuario
- */
+import java.util.ArrayList;
+import logica.Administrador;
+
+
 public class MenuAdministrador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuPropietario
-     */
-    public MenuAdministrador() {
+    private Administrador administrador;
+    private ArrayList<RecargaSaldoDialogo> listaDeRecargas;
+    public MenuAdministrador(Object administrador) {
         initComponents();
+        this.administrador = (Administrador) administrador;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,7 +30,7 @@ public class MenuAdministrador extends javax.swing.JFrame {
         btnRecarga = new javax.swing.JButton();
         btnBonificacion = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 2, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 153));
@@ -98,53 +95,19 @@ public class MenuAdministrador extends javax.swing.JFrame {
 
     private void btnTransitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransitoActionPerformed
         // TODO add your handling code here:
-        new EmularTransito(this, false).setVisible(true);
+        new EmularTransitoDialogo(this, false).setVisible(true);
     }//GEN-LAST:event_btnTransitoActionPerformed
 
     private void btnRecargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecargaActionPerformed
         // TODO add your handling code here:
-        new AprobacionRecargas(this, false).setVisible(true);
+         new AprobacionRecargaDialogo(this, false,this.administrador).setVisible(true);
     }//GEN-LAST:event_btnRecargaActionPerformed
 
     private void btnBonificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBonificacionActionPerformed
        new  AsignarBonificacionesDialogo(this, false).setVisible(true);
     }//GEN-LAST:event_btnBonificacionActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuAdministrador().setVisible(true);
-            }
-        });
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBonificacion;
