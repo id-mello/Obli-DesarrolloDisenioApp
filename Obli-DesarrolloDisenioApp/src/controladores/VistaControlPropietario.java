@@ -3,7 +3,7 @@ package controladores;
 
 import java.util.ArrayList;
 import logica.Propietario;
-import logica.RegistroTransito;
+import logica.Transito;
 
 
 public interface VistaControlPropietario {

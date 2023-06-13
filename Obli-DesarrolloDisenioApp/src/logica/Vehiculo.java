@@ -7,12 +7,14 @@ public class Vehiculo{
     private String modelo;
     private String color;
     private Categoria categoria;
+    private Propietario propietario;
 
-    Vehiculo(String mat, String modelo, String color, Categoria cat) {
+    Vehiculo(String mat, String modelo, String color, Categoria cat, Propietario propietario) {
         this.matricula = mat;
         this.modelo = modelo;
         this.color = color;
         this.categoria = cat;
+        this.propietario = propietario;
     }
 
     public String getMatricula() {
@@ -30,4 +32,10 @@ public class Vehiculo{
     public Categoria getCategoria() {
         return categoria;
     }
+
+    public Propietario getPropietario() {
+        return propietario;
+    }
+    
+    
 }

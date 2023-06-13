@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logica;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- *
- * @author Usuario
- */
+
 public class Frecuente extends Bonificacion{
 
     public Frecuente() {
@@ -21,21 +15,19 @@ public class Frecuente extends Bonificacion{
     }
 
     @Override
-    public double calculoDescuento() {
+    public double calculoDescuento(ArrayList<Transito> listaTransitos, double tarifa, Puesto puesto) {
         
-        double monto = 0;
-        boolean paso = false;
+        for(Transito t : listaTransitos){
+            
+            if(t.getFecha().equals(LocalDate.now()) && t.getPuesto().equals(puesto)){
+                tarifa = tarifa*0.50;
+                return tarifa;
+                //50% de descuento a partir del segundo transito realizado en el día por un puesto determinado con el mismo vehículo. 
+                //En el primer transito del día (con cada vehículo) no tienen descuento
+            }
+        }
         
-//        for(RegistroTransito rt : ){
-//        
-//        }
-        
-        return monto;
+        return tarifa;
     }
-
-//    Tienen un 50% de descuento a partir del segundo transito realizado en el día 
-//por un puesto determinado con el mismo vehículo. En el primer transito del día (con cada 
-//vehículo) no tienen descuento.
-
     
 }

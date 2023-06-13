@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package iuEscritorio;
 
 import javax.swing.JOptionPane;
 
 
-/**
- *
- * @author usuario
- */
 public abstract class LoginAbstracto extends javax.swing.JDialog {
 
     /**
@@ -122,7 +114,7 @@ public abstract class LoginAbstracto extends javax.swing.JDialog {
         String pass = new String(txtPassword.getPassword());
         Object obj = this.llamarLogin(cedula,pass);
         if(obj==null){
-            JOptionPane.showMessageDialog(this, "Error al iniciar sesion");
+            JOptionPane.showMessageDialog(this, "Acceso denegado");
         }else{
             setVisible(false);
             this.proximoCasoUso(obj);

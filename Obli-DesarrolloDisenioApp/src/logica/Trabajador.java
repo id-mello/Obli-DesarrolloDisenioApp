@@ -5,6 +5,10 @@
  */
 package logica;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 /**
  *
  * @author Usuario
@@ -19,10 +23,15 @@ public class Trabajador extends Bonificacion{
     }
 
     @Override
-    public double calculoDescuento() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public double calculoDescuento(ArrayList<Transito> listaTransitos, double tarifa, Puesto puesto) {
+        
+        LocalDate fecha = LocalDate.now();
+        DayOfWeek diaSemana = fecha.getDayOfWeek();
+        if(diaSemana != DayOfWeek.SATURDAY && diaSemana != DayOfWeek.SUNDAY){
+            tarifa = tarifa*0.20;
+            // Tienen un 80% de descuento si el tránsito por el puesto se realiza en un día de semana
+        }
 
-    
-   
+        return tarifa;
+    }
 }

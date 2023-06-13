@@ -115,8 +115,8 @@ public class Fachada extends Observable{
         avisar(SistemaUsuarios.eventos.cambioSaldoPropietario);
     }
     
-    public Propietario existeVehiculoMatricula(String matricula) throws PeajeException{
-        return sistemaUsuarios.existeVehiculoMatricula(matricula);
+    public Vehiculo buscarVehiculoMatricula(String matricula) throws PeajeException{
+        return sistemaUsuarios.buscarVehiculoMatricula(matricula);
     }
     
 }

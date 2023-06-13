@@ -8,7 +8,7 @@ import logica.Puesto;
 import controladores.IVistaAsignarBonificacion;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import logica.AsignarBonificacion;
+import logica.BonificacionAsignada;
 import logica.Propietario;
 
 public class AsignarBonificacionesDialogo extends javax.swing.JDialog implements IVistaAsignarBonificacion{
@@ -275,8 +275,8 @@ public class AsignarBonificacionesDialogo extends javax.swing.JDialog implements
         labelPropietario.setText("Propietario: " + propietario.getNombre());
         
         DefaultTableModel model = (DefaultTableModel) tablaBonificaciones.getModel();
-
-        for (AsignarBonificacion ab : propietario.getListaBonificaciones()) {
+        model.setRowCount(0);   
+        for (BonificacionAsignada ab : propietario.getListaBonificaciones()) {
             Object[] rowData = {ab.getBonificacion().getNombre(), ab.getPuesto().getNombre()};
             model.addRow(rowData);
         }

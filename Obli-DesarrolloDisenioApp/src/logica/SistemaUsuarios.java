@@ -12,6 +12,7 @@ public class SistemaUsuarios extends Observable{
     private ArrayList<Administrador> usuarioAdministrador = new ArrayList();
     private ArrayList<Propietario> listaPropietarios = new ArrayList();
     private ArrayList<Recarga> listaRecargaPendiente = new ArrayList();
+    
     public enum eventos{cambioListaRecargasPendientes,cambioSaldoPropietario};
     
  
@@ -81,21 +82,20 @@ public class SistemaUsuarios extends Observable{
         return listaPropietarios;
     }
     
-    public Propietario existeVehiculoMatricula(String matricula) throws PeajeException{
+    public Vehiculo buscarVehiculoMatricula(String matricula) throws PeajeException{
         
-        boolean encontrado = false;
-        Propietario p = null;
+        Vehiculo v = null;
         int i = 0;
         
-        while(i<listaPropietarios.size() && !encontrado){
+        while(i<listaPropietarios.size() && v == null){
             
-            p = listaPropietarios.get(i);
-            encontrado = p.existeVehiculoMatricula(matricula);
+            Propietario p = listaPropietarios.get(i);
+            v = p.buscarVehiculoMatricula(matricula);
             i++;
         }
- 
-        if(!encontrado)throw new PeajeException("No existe el vehículo.");
-            
-        return p;
+        
+        if(v == null)throw new PeajeException("No existe el vehículo.");
+        
+        return v;    
     }
 }

@@ -43,4 +43,25 @@ public class Puesto {
         
         listaTarifas.add(new Tarifa(monto, cat));
     }
+
+    public double buscarTarifaCategoria(Categoria categoria) {
+        boolean encontrado = false;
+        int i = 0;
+        double tarifa = 0;
+        while(i<listaTarifas.size() && !encontrado){
+            Tarifa t = listaTarifas.get(i);
+            if(t.getCategoriaVehiculo().equals(categoria)){
+                tarifa =  t.getMonto();
+                encontrado = true;
+            }
+        }
+        return tarifa;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+    
+    
 }

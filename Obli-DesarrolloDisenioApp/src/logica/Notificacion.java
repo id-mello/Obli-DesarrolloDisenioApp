@@ -5,13 +5,29 @@
  */
 package logica;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 /**
  *
  * @author Usuario
  */
 public class Notificacion {
-    private Date fecha;
+    private LocalDate fecha;
     private String mensaje;
+
+    public Notificacion(String mensaje) {
+        this.fecha = LocalDate.now();
+        this.mensaje = mensaje;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+    
+    
 }

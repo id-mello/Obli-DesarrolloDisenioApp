@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logica;
 
-/**
- *
- * @author Usuario
- */
+import java.util.ArrayList;
+
+
 public abstract class Bonificacion {
     private String nombre;
     private String descripcion;
@@ -49,6 +44,11 @@ public abstract class Bonificacion {
         this.descuento = descuento;
     }
 
-    public abstract double calculoDescuento();
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+    public abstract double calculoDescuento(ArrayList<Transito> lista, double tarifa, Puesto puesto);
    
 }

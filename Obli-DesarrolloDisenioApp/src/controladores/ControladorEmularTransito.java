@@ -6,8 +6,9 @@ package controladores;
 import java.util.ArrayList;
 import logica.Fachada;
 import logica.PeajeException;
-import logica.Propietario;
 import logica.Puesto;
+import logica.Transito;
+import logica.Vehiculo;
 
 
 public class ControladorEmularTransito {
@@ -31,9 +32,9 @@ public class ControladorEmularTransito {
     
         try {
             
-            Propietario p = Fachada.getInstancia().existeVehiculoMatricula(matricula);
-            p.agregarUnTransito(puesto);
-         
+            Vehiculo v = Fachada.getInstancia().buscarVehiculoMatricula(matricula);
+            Transito transito = v.getPropietario().agregarUnTransito(puesto, v);
+            iVista.mostrarTransito(transito);
         } catch (PeajeException ex) {
             iVista.error(ex.getMessage());
         }

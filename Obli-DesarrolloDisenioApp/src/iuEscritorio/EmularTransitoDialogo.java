@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.Puesto;
 import logica.Tarifa;
+import logica.Transito;
 
 
 public class EmularTransitoDialogo extends javax.swing.JDialog implements IVistaEmularTransito {
@@ -151,8 +152,7 @@ public class EmularTransitoDialogo extends javax.swing.JDialog implements IVista
     }//GEN-LAST:event_txtMatriculaActionPerformed
 
     private void btnRegistrarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMatriculaActionPerformed
-        DefaultTableModel model = (DefaultTableModel) tablaTarifas.getModel();
-        model.setRowCount(0);
+
         int p = comboPuestos.getSelectedIndex();
         if(p != 0){
             controlador.emularUnTransito((Puesto) comboPuestos.getSelectedItem(), txtMatricula.getText());
@@ -212,6 +212,21 @@ public class EmularTransitoDialogo extends javax.swing.JDialog implements IVista
 
     @Override
     public void error(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    @Override
+    public void mostrarTransito(Transito transito) {
+        
+        String message = "Propietario: " + transito.getPropietario().getNombre() + "\n" + "Matrícula: " + transito.getVehiculo().getMatricula() + "\n";
+        
+        if(transito.getBonificacion() != null){
+        
+            message += "Bonificación: " + transito.getBonificacion().getBonificacion().getNombre() + "\n";
+        }
+        
+        message += "Tarifa: " + transito.getMonto() + "\n" + "Saldo: " + transito.getPropietario().getSaldo();
+        
         JOptionPane.showMessageDialog(this, message);
     }
 
