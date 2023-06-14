@@ -20,7 +20,7 @@ public class Frecuente extends Bonificacion{
         for(Transito t : listaTransitos){
             
             if(t.getFecha().equals(LocalDate.now()) && t.getPuesto().equals(puesto)){
-                tarifa = tarifa*0.50;
+                tarifa = tarifa*getDescuento();
                 return tarifa;
                 //50% de descuento a partir del segundo transito realizado en el día por un puesto determinado con el mismo vehículo. 
                 //En el primer transito del día (con cada vehículo) no tienen descuento

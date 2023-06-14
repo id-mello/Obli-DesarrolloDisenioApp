@@ -28,7 +28,7 @@ public class Trabajador extends Bonificacion{
         LocalDate fecha = LocalDate.now();
         DayOfWeek diaSemana = fecha.getDayOfWeek();
         if(diaSemana != DayOfWeek.SATURDAY && diaSemana != DayOfWeek.SUNDAY){
-            tarifa = tarifa*0.20;
+            tarifa = tarifa*getDescuento();
             // Tienen un 80% de descuento si el tránsito por el puesto se realiza en un día de semana
         }
 

@@ -2,7 +2,9 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Date;
 import observador.Observable;
+import observador.Observador;
  
 
 
@@ -12,8 +14,7 @@ public class SistemaUsuarios extends Observable{
     private ArrayList<Administrador> usuarioAdministrador = new ArrayList();
     private ArrayList<Propietario> listaPropietarios = new ArrayList();
     private ArrayList<Recarga> listaRecargaPendiente = new ArrayList();
-    
-    public enum eventos{cambioListaRecargasPendientes,cambioSaldoPropietario};
+    public enum eventos{cambioListaRecargasPendientes,cambioSaldoPropietario,cambioTablaPropietario};
     
  
     public void agregarAdministrador(String nombre, String cedula, String contraseña){
@@ -24,10 +25,28 @@ public class SistemaUsuarios extends Observable{
         listaPropietarios.add(new Propietario( nombreCompleto, cedula, pass));       
     }
     
+     public ArrayList<Recarga> getListaRecargaPendiente() {
+        return listaRecargaPendiente;
+    }
+
+    public void setListaRecargaPendiente(ArrayList<Recarga> listaRecargaPendiente) {
+        this.listaRecargaPendiente = listaRecargaPendiente;
+    }
+    
+
+    public ArrayList<Propietario> getListaPropietarios() {
+        return listaPropietarios;
+    }
+    
+    
+    ////////////////    USUARIOS   //////////////////////////
+    
     public Administrador loginAdministrador(String ci, String pass) {
+        
+        
         Administrador a = (Administrador) buscarUsuarioLogin(ci, pass, usuarioAdministrador);
         
-        return a; 
+        return (Administrador)  a; 
     }
     
     public Propietario loginPropietario(String cedula, String password){
@@ -65,25 +84,10 @@ public class SistemaUsuarios extends Observable{
         return propietario;
     }
     
-    public ArrayList<Recarga> getListaRecargaPendiente() {
-        return listaRecargaPendiente;
-    }
-
-    public void setListaRecargaPendiente(ArrayList<Recarga> listaRecargaPendiente) {
-        this.listaRecargaPendiente = listaRecargaPendiente;
-    }
     
-    public void quitarRecargaPendiente(Recarga r){
-        listaRecargaPendiente.remove(r);
-        avisar(eventos.cambioListaRecargasPendientes);
-    }
-
-    public ArrayList<Propietario> getListaPropietarios(){
-        return listaPropietarios;
-    }
+    ////////////////    VEHICULO   //////////////////////////
     
-    public Vehiculo buscarVehiculoMatricula(String matricula) throws PeajeException{
-        
+    Vehiculo buscarVehiculoMatricula(String matricula) throws PeajeException {
         Vehiculo v = null;
         int i = 0;
         
@@ -98,4 +102,26 @@ public class SistemaUsuarios extends Observable{
         
         return v;    
     }
+
+    
+    ////////////////    RECARGA   //////////////////////////
+    
+    public void agregarRecargaPendiente(Recarga r) {
+        listaRecargaPendiente.add(r);
+        avisar(eventos.cambioListaRecargasPendientes);
+    }
+    
+    
+    public void aprobarRecarga(int index,Administrador adm) {
+        
+        Recarga recargaSeleccionada = listaRecargaPendiente.get(index);
+        Propietario p = recargaSeleccionada.getPropietario();
+        
+        p.actulizarRecarga(adm,recargaSeleccionada);
+        listaRecargaPendiente.remove(recargaSeleccionada);
+        
+        p.avisar(eventos.cambioListaRecargasPendientes);
+        adm.avisar(eventos.cambioListaRecargasPendientes);
+    }
+    
 }

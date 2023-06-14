@@ -20,7 +20,7 @@ public class LoginPropietario extends LoginAbstracto {
 
     @Override
     public void proximoCasoUso(Object obj) {
-        new controlPropietario(obj).setVisible(true);
+        new tablaControlPropietarioDialogo(obj).setVisible(true);
     }
     
     

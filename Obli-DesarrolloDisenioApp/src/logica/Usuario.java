@@ -1,16 +1,22 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package logica;
 
 import observador.Observable;
 
-
-public abstract class Usuario extends Observable  {
+/**
+ *
+ * @author Usuario
+ */
+public abstract class Usuario extends Observable{
     private String nombre;
     private String cedula;
     private String contraseña;
 
-    public enum eventos{cambioBonificacionesAsignadas};
-    
+    public enum eventos{cambioBonificacionesAsignadas,cambioNotificacion,listaRecargas,actualizarSaldos,actualizarContadoresVehiculo};
     
     public Usuario(String nombre, String cedula, String contraseña) {
         this.nombre = nombre;
@@ -41,7 +47,5 @@ public abstract class Usuario extends Observable  {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
-    
-    
     
 }

@@ -18,6 +18,8 @@ public class DatosPruebas {
         
 
        
+       ///////////////////////////////////////////////////// NUEVO  /////////////////////////////////////////////////////
+       
         fachada.AgregarPropietario("Diego Rolan", "11111111", "1");
         fachada.AgregarPropietario( "Washington Abreu","22222222","1");
         fachada.AgregarPropietario( "Walter Gargano","33333333","1");
@@ -25,9 +27,9 @@ public class DatosPruebas {
         fachada.agregarPuesto("Pando", "Ruta IB, Km33");
         fachada.agregarPuesto("Solís", "Ruta IB, Km81");
        
-        fachada.agregarBoniExonerado("Exonerados", "No pagan el transito en un determinado puesto", 100);
-        fachada.agregarBoniFrecuente("Frecuentes", "50% de descuento a partir del segundo transito realizado en el día por un puesto determinado con el mismo vehículo", 50);
-        fachada.agregarBoniTrabajador("Trabajadores", "80% de descuento si el tránsito por el puesto se realiza en un día de semana", 80);
+        fachada.agregarBoniExonerado("Exonerados", "No pagan el transito en un determinado puesto", 0);
+        fachada.agregarBoniFrecuente("Frecuentes", "50% de descuento a partir del segundo transito realizado en el día por un puesto determinado con el mismo vehículo", 0.50);
+        fachada.agregarBoniTrabajador("Trabajadores", "80% de descuento si el tránsito por el puesto se realiza en un día de semana", 0.20);
       
         fachada.crearCategorias("Auto");        
         fachada.crearCategorias("Camion");

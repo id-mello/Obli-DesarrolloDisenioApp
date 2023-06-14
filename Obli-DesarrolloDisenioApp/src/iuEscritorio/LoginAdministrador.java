@@ -19,8 +19,8 @@ public class LoginAdministrador extends LoginAbstracto {
 
     @Override
     public void proximoCasoUso(Object obj) {
-        new MenuAdministrador(obj).setVisible(true);
-        //new MonitorDialogo(null,false,(UsuarioAdministrador)obj).setVisible(true);
+        new MenuAdministradorDialogo(obj).setVisible(true);
+        
     }
     
 }

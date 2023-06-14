@@ -2,19 +2,19 @@
 package iuEscritorio;
 
 import controladores.ControladorAprobarCargaAdministrador;
-import controladores.VistaAprobarCargaAdministrador;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import logica.Administrador;
 import logica.Recarga;
+import controladores.IVistaAprobarCargaAdministrador;
 
 /**
  *
  * @author Ignac
  */
-public class AprobacionRecargaDialogo extends javax.swing.JDialog implements VistaAprobarCargaAdministrador{
+public class AprobacionRecargaDialogo extends javax.swing.JDialog implements IVistaAprobarCargaAdministrador{
 
     private Administrador administrador;
     private int filaSeleccionada;
@@ -25,10 +25,10 @@ public class AprobacionRecargaDialogo extends javax.swing.JDialog implements Vis
     public AprobacionRecargaDialogo(java.awt.Frame parent, boolean modal,Administrador adm) {
         super(parent, modal);
         this.administrador = adm;
-        this.controlAprobarCarga = new ControladorAprobarCargaAdministrador(this, adm);
         initComponents();
-        MostrarRecargas();
+        this.controlAprobarCarga = new ControladorAprobarCargaAdministrador(this, adm);
         
+       // MostrarRecargas(controlAprobarCarga.listaRecargasInit());
          filaSeleccionada = -1; // Inicializar la variable filaSeleccionada
         
     }
@@ -142,19 +142,13 @@ public class AprobacionRecargaDialogo extends javax.swing.JDialog implements Vis
 
     private void btnAprobarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprobarActionPerformed
      int filaSeleccionada = tablaRecargasPendientes.getSelectedRow();
-
     // Verifica si se ha seleccionado una fila
     if (filaSeleccionada == -1) {
         // No se ha seleccionado ninguna recarga
         return;
     }
-
-    DefaultTableModel model = (DefaultTableModel) tablaRecargasPendientes.getModel();
-    Date fecha = (Date) model.getValueAt(filaSeleccionada, 0);
-    String propietario = (String) model.getValueAt(filaSeleccionada, 1);
-    double monto = (double) model.getValueAt(filaSeleccionada, 2);
-
-    controlAprobarCarga.aprobarRecarga(fecha, propietario, monto);
+    //DefaultTableModel model = (DefaultTableModel) tablaRecargasPendientes.getModel();
+    controlAprobarCarga.aprobarRecarga(filaSeleccionada);
     }//GEN-LAST:event_btnAprobarActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
@@ -172,24 +166,26 @@ public class AprobacionRecargaDialogo extends javax.swing.JDialog implements Vis
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void MostrarRecargas() {
-        ArrayList<Recarga> listaDeRecarga = controlAprobarCarga.traerListaRecargas();
+    public void MostrarRecargas(ArrayList<Recarga> lista) {
+        ArrayList<Recarga> listaDeRecarga = lista;
         DefaultTableModel model = (DefaultTableModel) tablaRecargasPendientes.getModel();
         model.setRowCount(0); // Limpiar todas las filas existentes
 
         for (Recarga recarga : listaDeRecarga) {
+            if(recarga.getEstado() == "pendiente"){
             Object[] rowData = {
                 recarga.getFecha(),
-                recarga.getNombrePropietario(),
+                recarga.getPropietario().getNombre(),
                 recarga.getMonto()
             };
             model.addRow(rowData);
+            }
         }
     }
 
     @Override
     public void RecargaAprobada() {
-        MostrarRecargas();
+       // MostrarRecargas();
         
     }
 

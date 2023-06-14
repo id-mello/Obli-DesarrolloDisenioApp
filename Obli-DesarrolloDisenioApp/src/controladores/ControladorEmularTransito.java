@@ -11,7 +11,8 @@ import logica.Transito;
 import logica.Vehiculo;
 
 
-public class ControladorEmularTransito {
+
+public class ControladorEmularTransito{
     
     
     
@@ -31,7 +32,6 @@ public class ControladorEmularTransito {
     public void emularUnTransito(Puesto puesto, String matricula) {
     
         try {
-            
             Vehiculo v = Fachada.getInstancia().buscarVehiculoMatricula(matricula);
             Transito transito = v.getPropietario().agregarUnTransito(puesto, v);
             iVista.mostrarTransito(transito);
@@ -40,6 +40,6 @@ public class ControladorEmularTransito {
         }
         
     }
-    
+
     
 }

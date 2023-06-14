@@ -8,6 +8,9 @@ public class Vehiculo{
     private String color;
     private Categoria categoria;
     private Propietario propietario;
+    private int cantTransitos;
+    private double montoTotal;
+
 
     Vehiculo(String mat, String modelo, String color, Categoria cat, Propietario propietario) {
         this.matricula = mat;
@@ -15,6 +18,8 @@ public class Vehiculo{
         this.color = color;
         this.categoria = cat;
         this.propietario = propietario;
+        this.cantTransitos = 0;
+        this.montoTotal = 0;
     }
 
     public String getMatricula() {
@@ -35,6 +40,22 @@ public class Vehiculo{
 
     public Propietario getPropietario() {
         return propietario;
+    }
+
+    public int getCantTransitos() {
+        return cantTransitos;
+    }
+
+    public double getMontoTotal() {
+        return montoTotal;
+    }
+
+    public void setCantTransitos() {
+        this.cantTransitos++;
+    }
+    
+    public void aumentarMontoTotal(double monto){
+        this.montoTotal += monto;
     }
     
     

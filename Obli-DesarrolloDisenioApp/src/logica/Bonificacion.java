@@ -1,4 +1,3 @@
-
 package logica;
 
 import java.util.ArrayList;
@@ -17,8 +16,6 @@ public abstract class Bonificacion {
         this.descripcion = descripcion;
         this.descuento = descuento;
     }
-
-    
     
     public String getNombre() {
         return nombre;

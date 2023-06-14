@@ -9,23 +9,25 @@ public class Recarga {
     private double monto;
     private String estado;
     private Administrador usuarioAdministrador;
-    private String nombrePropietario;
+    private Propietario propietario;
 
-    public Recarga(double monto, String estado, String nombrePropietario) {
+    public Recarga(double monto, String estado, Propietario propietario) {
         this.monto = monto;
         this.estado = estado;
         this.fecha = new Date();
-        this.nombrePropietario = nombrePropietario;
+        this.propietario = propietario;
         this.usuarioAdministrador = null;
     }
 
-    public String getNombrePropietario() {
-        return nombrePropietario;
+    public Propietario getPropietario() {
+        return propietario;
     }
 
-    public void setNombrePropietario(String nombrePropietario) {
-        this.nombrePropietario = nombrePropietario;
+    public void setPropietario(Propietario Propietario) {
+        this.propietario = Propietario;
     }
+
+   
 
     public Date getFecha() {
         return fecha;
@@ -57,6 +59,12 @@ public class Recarga {
 
     public void setUsuarioAdministrador(Administrador usuarioAdministrador) {
         this.usuarioAdministrador = usuarioAdministrador;
+    }
+
+    void actualizarRecarga(Administrador adm) {
+        usuarioAdministrador = adm;
+        estado = "aprobado";
+        
     }
     
 }

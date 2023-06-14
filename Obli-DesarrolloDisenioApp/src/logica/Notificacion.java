@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package logica;
 
 import java.time.LocalDate;
 
 
-/**
- *
- * @author Usuario
- */
-public class Notificacion {
+public class Notificacion{
     private LocalDate fecha;
     private String mensaje;
 
@@ -28,6 +20,8 @@ public class Notificacion {
     public String getMensaje() {
         return mensaje;
     }
-    
-    
+
 }
+    
+    
+

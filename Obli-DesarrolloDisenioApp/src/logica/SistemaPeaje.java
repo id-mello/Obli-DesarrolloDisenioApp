@@ -1,8 +1,16 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package logica;
 
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Usuario
+ */
 public class SistemaPeaje {
     private ArrayList<Puesto> puestos = new ArrayList();
     private ArrayList<Bonificacion> bonificaciones = new ArrayList();

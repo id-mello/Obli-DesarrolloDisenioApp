@@ -48,12 +48,6 @@ public class Fachada extends Observable{
     public Propietario loginPropietario(String cedula, String password){
         return sistemaUsuarios.loginPropietario(cedula, password);
     }
-     
-    public ArrayList<Propietario> getListaPropietarios(){
-        return sistemaUsuarios.getListaPropietarios();
-    }
-    
-    
     
     public ArrayList<Categoria> getCategorias(){
         return sistemaPeaje.getListaCategorias();
@@ -90,7 +84,7 @@ public class Fachada extends Observable{
     
     public void AgregarRecargaPendiente(Recarga r){
     
-         sistemaUsuarios.getListaRecargaPendiente().add(r);
+         sistemaUsuarios.agregarRecargaPendiente(r);
     }
     
     public Propietario traerPropietario(String usuario){
@@ -104,19 +98,21 @@ public class Fachada extends Observable{
         }
         return null;
     }
-     
-    public void quitarRecargaPendiente(Recarga r){
-        sistemaUsuarios.quitarRecargaPendiente(r);
-    }
     
     public void agregarSaldo(String usu,double monto ){
         Propietario propietarioRecarga = traerPropietario(usu);
         propietarioRecarga.agregarSaldo(monto);
-        avisar(SistemaUsuarios.eventos.cambioSaldoPropietario);
+       
     }
-    
-    public Vehiculo buscarVehiculoMatricula(String matricula) throws PeajeException{
+
+    public Vehiculo buscarVehiculoMatricula(String matricula) throws PeajeException {
         return sistemaUsuarios.buscarVehiculoMatricula(matricula);
     }
     
+    public void aprobarRecarga(int index,Administrador adm){
+        
+        sistemaUsuarios.aprobarRecarga(index,adm);
+        
+       
+    }
 }

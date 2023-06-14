@@ -21,7 +21,7 @@ public class Exonerado extends Bonificacion{
     public double calculoDescuento(ArrayList<Transito> listaTransitos, double tarifa, Puesto puesto) {
 
         //No pagan el transito en un determinado puesto 
-        return 0;
+        return getDescuento();
     }
 
     

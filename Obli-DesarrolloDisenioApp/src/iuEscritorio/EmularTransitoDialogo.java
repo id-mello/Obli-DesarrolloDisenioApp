@@ -222,10 +222,10 @@ public class EmularTransitoDialogo extends javax.swing.JDialog implements IVista
         
         if(transito.getBonificacion() != null){
         
-            message += "Bonificación: " + transito.getBonificacion().getBonificacion().getNombre() + "\n";
+            message += "Bonificación: " + transito.getBonificacion() + "\n";
         }
         
-        message += "Tarifa: " + transito.getMonto() + "\n" + "Saldo: " + transito.getPropietario().getSaldo();
+        message += "Tarifa: " + transito.getMontoFinal() + "\n" + "Saldo: " + transito.getPropietario().getSaldo();
         
         JOptionPane.showMessageDialog(this, message);
     }

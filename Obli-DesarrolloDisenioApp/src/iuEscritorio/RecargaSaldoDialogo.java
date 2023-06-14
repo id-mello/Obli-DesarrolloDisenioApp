@@ -6,18 +6,15 @@
 package iuEscritorio;
 
 import controladores.ControladorCargaSaldoPropietario;
-import controladores.VistaCargaSaldoPropietario;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import logica.PeajeException;
 import logica.Propietario;
+import controladores.IVistaCargaSaldoPropietario;
 
 /**
  *
  * @author Usuario
  */
-public class RecargaSaldoDialogo extends javax.swing.JDialog  implements VistaCargaSaldoPropietario{
+public class RecargaSaldoDialogo extends javax.swing.JDialog  implements IVistaCargaSaldoPropietario{
 
     /**
      * Creates new form RecargaSaldo
@@ -27,8 +24,8 @@ public class RecargaSaldoDialogo extends javax.swing.JDialog  implements VistaCa
         super(parent, modal);
         initComponents();
         controladorCargaSaldoPropietario = new ControladorCargaSaldoPropietario(this, propietario);
-        NameUsuario.setText(controladorCargaSaldoPropietario.mostrarNombrePropietario());
-        valueSaldo.setText(String.valueOf(controladorCargaSaldoPropietario.mostrarSaldoPropietario()));
+//        labelNombreUsuario.setText(controladorCargaSaldoPropietario.mostrarDetallePropietario());
+//        valueSaldo.setText(String.valueOf(controladorCargaSaldoPropietario.mostrarSaldoPropietario()));
     }
 
     /**
@@ -41,24 +38,24 @@ public class RecargaSaldoDialogo extends javax.swing.JDialog  implements VistaCa
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        valueSaldo = new javax.swing.JLabel();
+        labelSaldo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        NameUsuario = new javax.swing.JLabel();
+        labelNombreUsuario = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         inputMonto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnAceptarRecarga = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Saldo : ");
 
-        valueSaldo.setText("jLabel2");
+        labelSaldo.setText("jLabel2");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Usuario : ");
 
-        NameUsuario.setText("jLabel3");
+        labelNombreUsuario.setText("jLabel3");
 
         jLabel3.setText("Monto a Recargar");
 
@@ -68,10 +65,10 @@ public class RecargaSaldoDialogo extends javax.swing.JDialog  implements VistaCa
             }
         });
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptarRecarga.setText("Aceptar");
+        btnAceptarRecarga.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarRecargaActionPerformed(evt);
             }
         });
 
@@ -89,14 +86,14 @@ public class RecargaSaldoDialogo extends javax.swing.JDialog  implements VistaCa
                         .addGap(18, 18, 18)
                         .addComponent(inputMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(valueSaldo)
+                        .addComponent(labelSaldo)
                         .addGap(122, 122, 122)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NameUsuario))
+                        .addComponent(labelNombreUsuario))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnAceptarRecarga, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -105,49 +102,46 @@ public class RecargaSaldoDialogo extends javax.swing.JDialog  implements VistaCa
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(valueSaldo)
+                    .addComponent(labelSaldo)
                     .addComponent(jLabel2)
-                    .addComponent(NameUsuario))
+                    .addComponent(labelNombreUsuario))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(inputMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
-                .addComponent(jButton1)
+                .addComponent(btnAceptarRecarga)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            controladorCargaSaldoPropietario.agregarRecargaSaldo(Double.parseDouble(inputMonto.getText()));        // TODO add your handling code here:
-        } catch (PeajeException ex) {
-            Logger.getLogger(RecargaSaldoDialogo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnAceptarRecargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarRecargaActionPerformed
+    
+        controladorCargaSaldoPropietario.agregarRecargaSaldo(Double.parseDouble(inputMonto.getText()));     
+      
+    }//GEN-LAST:event_btnAceptarRecargaActionPerformed
 
     private void inputMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputMontoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputMontoActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel NameUsuario;
+    private javax.swing.JButton btnAceptarRecarga;
     private javax.swing.JTextField inputMonto;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel valueSaldo;
+    private javax.swing.JLabel labelNombreUsuario;
+    private javax.swing.JLabel labelSaldo;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void mostrarDetallePropietario(String nombre, double saldo) {
-        valueSaldo.setText(String.valueOf(saldo) );
-        NameUsuario.setText(nombre);
+        labelSaldo.setText(String.valueOf(saldo) );
+        labelNombreUsuario.setText(nombre);
     }
 
     @Override

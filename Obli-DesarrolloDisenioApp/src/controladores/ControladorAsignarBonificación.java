@@ -22,7 +22,6 @@ public class ControladorAsignarBonificación implements Observador{
         this.iVista = iVista;
         mostrarBonificaciones();
         mostrarPuestos();
-        
     }
     
     

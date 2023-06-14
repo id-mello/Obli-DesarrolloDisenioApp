@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controladores;
 
 
@@ -14,45 +10,43 @@ import logica.SistemaUsuarios;
 import observador.Observable;
 import observador.Observador;
 
-/**
- *
- * @author Usuario
- */
 public class ControladorCargaSaldoPropietario implements Observador{
-    private VistaCargaSaldoPropietario vistaCargarSaldoPropietario;
+    private IVistaCargaSaldoPropietario vistaCargarSaldoPropietario;
    
     private Propietario propietario;
     
 
-    public ControladorCargaSaldoPropietario(VistaCargaSaldoPropietario vista, Propietario propietario) {
+    public ControladorCargaSaldoPropietario(IVistaCargaSaldoPropietario vista, Propietario propietario) {
        this.propietario = propietario;
-      
        this.vistaCargarSaldoPropietario = vista;
+       mostrarDetallePropietario();
+       
     }
     
-    public String mostrarNombrePropietario(){
-        return propietario.getNombre();
+
+    public void mostrarDetallePropietario(){
+        vistaCargarSaldoPropietario.mostrarDetallePropietario(propietario.getNombre(), propietario.getSaldo());
     }
     
-    public double mostrarSaldoPropietario(){
-        return propietario.getSaldo();
-    }
-    public void agregarRecargaSaldo(double monto) throws PeajeException{
+    public void agregarRecargaSaldo(double monto) {
+        
         try {
+            propietario.agregarObservador(this);
             Recarga r = propietario.cargarRecarga(monto);
             Fachada.getInstancia().AgregarRecargaPendiente(r);
+            
         } catch (PeajeException ex) {
             vistaCargarSaldoPropietario.error(ex.getMessage());
         }
-     
-      
-      vistaCargarSaldoPropietario.RecargaCreada();
+        
+        vistaCargarSaldoPropietario.RecargaCreada();
     }
 
     @Override
     public void actualizar(Object evento, Observable origen) {
-        if(evento.equals(SistemaUsuarios.eventos.cambioSaldoPropietario)){
-            mostrarSaldoPropietario();
+        if(evento.equals(SistemaUsuarios.eventos.cambioSaldoPropietario) || evento.equals(SistemaUsuarios.eventos.cambioListaRecargasPendientes)){
+            mostrarDetallePropietario();
         }
+  
     }
 }
