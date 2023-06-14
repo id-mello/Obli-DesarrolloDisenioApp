@@ -48,11 +48,11 @@ public class Fachada extends Observable{
     public Propietario loginPropietario(String cedula, String password){
         return sistemaUsuarios.loginPropietario(cedula, password);
     }
-//     
-//    public ArrayList<Propietario> getListaPropietarios(){
-//        return sistemaUsuarios.getListaPropietarios();
-//    }
-//    
+     
+    public ArrayList<Propietario> getListaPropietarios(){
+        return sistemaUsuarios.getListaPropietarios();
+    }
+    
     
     
     public ArrayList<Categoria> getCategorias(){

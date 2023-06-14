@@ -18,8 +18,6 @@ public class DatosPruebas {
         
 
        
-       ///////////////////////////////////////////////////// NUEVO  /////////////////////////////////////////////////////
-       
         fachada.AgregarPropietario("Diego Rolan", "11111111", "1");
         fachada.AgregarPropietario( "Washington Abreu","22222222","1");
         fachada.AgregarPropietario( "Walter Gargano","33333333","1");

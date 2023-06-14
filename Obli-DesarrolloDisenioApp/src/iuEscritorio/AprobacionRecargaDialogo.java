@@ -184,7 +184,6 @@ public class AprobacionRecargaDialogo extends javax.swing.JDialog implements Vis
                 recarga.getMonto()
             };
             model.addRow(rowData);
-            
         }
     }
 

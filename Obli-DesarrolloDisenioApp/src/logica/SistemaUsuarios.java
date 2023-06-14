@@ -27,7 +27,7 @@ public class SistemaUsuarios extends Observable{
     public Administrador loginAdministrador(String ci, String pass) {
         Administrador a = (Administrador) buscarUsuarioLogin(ci, pass, usuarioAdministrador);
         
-        return (Administrador)  a; 
+        return a; 
     }
     
     public Propietario loginPropietario(String cedula, String password){

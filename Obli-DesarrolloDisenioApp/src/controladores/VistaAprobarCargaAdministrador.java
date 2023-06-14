@@ -14,6 +14,8 @@ import logica.Recarga;
  * @author Usuario
  */
 public interface VistaAprobarCargaAdministrador {
+    
+    
     public void MostrarRecargas();
     
     public void RecargaAprobada();

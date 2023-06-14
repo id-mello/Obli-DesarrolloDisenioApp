@@ -218,7 +218,7 @@ public class EmularTransitoDialogo extends javax.swing.JDialog implements IVista
     @Override
     public void mostrarTransito(Transito transito) {
         
-        String message = "Propietario: " + transito.getPropietario().getNombre() + "\n" + "Matrícula: " + transito.getVehiculo().getMatricula() + "\n";
+        String message = "Propietario: " + transito.getPropietario().getNombre() + "\n" + "Categoría: " + transito.getVehiculo().getCategoria().getNombre() + "\n";
         
         if(transito.getBonificacion() != null){
         

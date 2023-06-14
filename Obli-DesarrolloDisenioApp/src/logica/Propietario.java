@@ -9,7 +9,10 @@ package logica;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
+
 public class Propietario extends Usuario{
+    
     private double saldo;
     private ArrayList<Vehiculo> listaVehiculos;
     private ArrayList<BonificacionAsignada> listaBonificaciones;
@@ -67,8 +70,9 @@ public class Propietario extends Usuario{
         }
         
         BonificacionAsignada nuevaBonificacion = new BonificacionAsignada(bonificacion, puesto, LocalDate.now());
-
-        getListaBonificaciones().add(nuevaBonificacion);
+        
+        listaBonificaciones.add(nuevaBonificacion);
+        avisar(eventos.cambioBonificacionesAsignadas);
     }
     
     

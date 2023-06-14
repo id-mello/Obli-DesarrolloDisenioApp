@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controladores;
 
 import java.util.ArrayList;
@@ -50,17 +47,17 @@ public class ControladorAprobarCargaAdministrador implements Observador{
                 recarga.setEstado("aprobado");
                 
                 // Elimina la recarga de la lista de pendientes
-               Fachada.getInstancia().quitarRecargaPendiente(recarga);
+                Fachada.getInstancia().quitarRecargaPendiente(recarga);
 
                 // Notifica a la vista que la recarga ha sido aprobada
                 //vistaAprobarCargaAdministrador.RecargaAprobada();
                 vistaAprobarCargaAdministrador.RecargaAprobada();
               
             }
-    }
+        }
     
-    // Si no se encontró la recarga, notifica a la vista que ha ocurrido un error
-    vistaAprobarCargaAdministrador.error("No se encontró la recarga seleccionada");
+        // Si no se encontró la recarga, notifica a la vista que ha ocurrido un error
+        vistaAprobarCargaAdministrador.error("No se encontró la recarga seleccionada");
     }
 
     @Override

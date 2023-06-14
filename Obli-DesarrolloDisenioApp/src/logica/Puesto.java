@@ -54,6 +54,7 @@ public class Puesto {
                 tarifa =  t.getMonto();
                 encontrado = true;
             }
+            i++;
         }
         return tarifa;
     }

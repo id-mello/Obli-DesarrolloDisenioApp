@@ -7,19 +7,22 @@ import logica.Fachada;
 import logica.PeajeException;
 import logica.Propietario;
 import logica.Puesto;
+import observador.Observable;
+import observador.Observador;
 
 
 
-public class ControladorAsignarBonificación {
-    
+public class ControladorAsignarBonificación implements Observador{
     
     private IVistaAsignarBonificacion iVista;
     private Propietario propietario;
-
-    public ControladorAsignarBonificación(IVistaAsignarBonificacion iVista) {
+    private String ultimaCedula = "";
+    
+    public ControladorAsignarBonificación(IVistaAsignarBonificacion iVista)  {
         this.iVista = iVista;
         mostrarBonificaciones();
         mostrarPuestos();
+        
     }
     
     
@@ -36,7 +39,9 @@ public class ControladorAsignarBonificación {
     public void buscarPropietarioPorCI(String cedula){
         
          try {
+            ultimaCedula = cedula; 
             propietario = Fachada.getInstancia().buscarPropietarioPorCI(cedula);
+            propietario.agregarObservador(this);
             iVista.mostrarAsignaciones(propietario); 
         } catch (PeajeException ex) {        
             iVista.error(ex.getMessage());
@@ -55,6 +60,13 @@ public class ControladorAsignarBonificación {
         }
         
         
+    }
+
+    @Override
+    public void actualizar(Object evento, Observable origen) {
+        if(evento.equals(Propietario.eventos.cambioBonificacionesAsignadas)){
+            buscarPropietarioPorCI(ultimaCedula);
+        }
     }
 
 }

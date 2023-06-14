@@ -121,7 +121,7 @@ public abstract class LoginAbstracto extends javax.swing.JDialog {
         }
        
     }
-
+   
     public abstract Object llamarLogin(String cedula, String pass);
     public abstract void proximoCasoUso(Object obj);
     
